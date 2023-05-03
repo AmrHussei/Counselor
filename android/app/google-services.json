@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "115636575209",
+    "project_id": "legal-3fcf3",
+    "storage_bucket": "legal-3fcf3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:115636575209:android:e2b1ac0d823aab8b754978",
+        "android_client_info": {
+          "package_name": "com.amr.legal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "115636575209-d75a3nffspe2msrkgt6s3o00st2h6t09.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGqbcMv71vJ6odvM1icz0MbdQzckxTRpc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "115636575209-d75a3nffspe2msrkgt6s3o00st2h6t09.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
