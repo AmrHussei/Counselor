@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:legal_advice_app/features/layout/drawer.dart';
-
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 import '../../core/utils/assets_data.dart';
 import '../../core/utils/constant.dart';
 import '../questions_and_dictionary/presentation/view/screens/questions_screen.dart';
@@ -22,6 +22,7 @@ class LayOut extends StatefulWidget {
 class _LayOutState extends State<LayOut> {
   // ignore: non_constant_identifier_names
   int IndexOfPage = 3;
+  bool amr = false;
   List<Widget> taps = [
     CommunityMainScreen(),
     ChatScreen(),
@@ -34,6 +35,37 @@ class _LayOutState extends State<LayOut> {
     'اسئله شائعه',
     'الرئيسيه',
   ];
+  @override
+  void initState() {
+    socket = IO.io('https://legal-advice-1812.onrender.com', {
+      'transports': ['websocket'],
+      'autoConnect': false
+    });
+    socket!.connect();
+    socket!.emit('joinRoom', UserDataConstant.id);
+    socket!.onConnect((_) {
+      print('+++++++++++++++++++++++++++ connect ++++++++++++++++++++++++');
+    });
+
+    socket!.on('message', (data) {
+      //fro admin
+      setState(() {
+        amr = true;
+        print('+++++++++++++++++++++++++++ data  ++++++++++++++++++++++++');
+        print(' data dev $data');
+        final newdata = Message.fromJson(data);
+        messages.add(newdata);
+        scrollController.animateTo(
+          scrollController.position.maxScrollExtent + 90.h,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      });
+
+      print(data);
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +171,7 @@ class _LayOutState extends State<LayOut> {
                       fit: BoxFit.fill,
                     ),
                   ),
-                  label: 'راسلني'),
+                  label: amr ? 'راسلني' : 'not msg'),
               BottomNavigationBarItem(
                   icon: SizedBox(
                     width: 18.w,
@@ -165,7 +197,10 @@ class _LayOutState extends State<LayOut> {
                   ),
                   label: 'الرئيسيه'),
             ]),
-        body: taps[IndexOfPage],
+        body: IndexedStack(
+          index: IndexOfPage,
+          children: taps,
+        ),
       ),
     );
   }

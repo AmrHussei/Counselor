@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -9,8 +10,40 @@ import '../../../../../core/utils/constant.dart';
 import '../../../../../core/widgets/text_utils.dart';
 import '../widgets/body_of_news_screen.dart';
 
-class NewsScreen extends StatelessWidget {
+class NewsScreen extends StatefulWidget {
   const NewsScreen({super.key});
+
+  @override
+  State<NewsScreen> createState() => _NewsScreenState();
+}
+
+class _NewsScreenState extends State<NewsScreen> {
+  void requestPermissionsForNotifications() async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+    NotificationSettings settings = await messaging.requestPermission(
+      alert: true,
+      badge: true,
+      sound: true,
+      carPlay: true,
+      criticalAlert: false,
+      provisional: false,
+    );
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const NewsScreen()));
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      print('authorized');
+    }
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      print(
+          'title ${message.notification!.title} body ${message.notification!.body}');
+    });
+  }
+
+  @override
+  void initState() {
+    requestPermissionsForNotifications();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

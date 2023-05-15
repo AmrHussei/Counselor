@@ -41,39 +41,52 @@ class _CommunityMainScreenState extends State<CommunityMainScreen> {
     return BlocListener<CommunityCubit, CommunityState>(
       listener: (context, state) {
         if (state is AllPostsLoaded) {
-          if (_refreshController.isRefresh == true) {
+          if (_refreshController.isRefresh) {
             _refreshController.refreshCompleted();
           }
-          if (_refreshController.isLoading == true) {
-            _refreshController.loadComplete();
+          if (_refreshController.isLoading) {
+            _refreshController.refreshCompleted();
           }
         }
         if (state is AllPostsLoading) {
-          if (_refreshController.isRefresh == true) {
+          if (_refreshController.isRefresh) {
             _refreshController.refreshCompleted();
           }
-          if (_refreshController.isLoading == true) {
-            _refreshController.loadComplete();
+          if (_refreshController.isLoading) {
+            _refreshController.refreshCompleted();
           }
         }
       },
       child: Scaffold(
-        body: SmartRefresher(
-          controller: _refreshController,
-          enablePullUp: true,
-          onRefresh: () async {
-            BlocProvider.of<CommunityCubit>(context).getAllPosts();
-            await Future.delayed(const Duration(milliseconds: 1000));
-            _refreshController.loadComplete();
-          },
-          header: WaterDropHeader(waterDropColor: MyColors.primary),
-          enablePullDown: true,
-          onLoading: () async {
-            BlocProvider.of<CommunityCubit>(context).loadMorePosts();
-            await Future.delayed(const Duration(milliseconds: 1000));
-            _refreshController.loadComplete();
-          },
-          child: AllPostsViewer(),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Expanded(
+                child: SmartRefresher(
+                  controller: _refreshController,
+                  enablePullUp: true,
+                  onRefresh: () async {
+                    BlocProvider.of<CommunityCubit>(context).getAllPosts();
+                    await Future.delayed(const Duration(milliseconds: 1000));
+                    _refreshController.loadComplete();
+                  },
+                  header: WaterDropHeader(waterDropColor: MyColors.primary),
+                  enablePullDown: true,
+                  onLoading: () async {
+                    BlocProvider.of<CommunityCubit>(context).loadMorePosts();
+                    await Future.delayed(const Duration(milliseconds: 1000));
+                    _refreshController.loadComplete();
+                  },
+                  child: CustomScrollView(
+                    slivers: [
+                      AllPostsViewer(),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
