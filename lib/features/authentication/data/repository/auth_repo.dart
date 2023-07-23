@@ -72,4 +72,10 @@ class AuthRepo {
     AuthlModel userData = AuthlModel.fromJson(respons.data);
     return userData;
   }
+
+  static Future<Response> deletUser() async {
+    Response response = await SignUpServices.deletUser();
+
+    return response;
+  }
 }

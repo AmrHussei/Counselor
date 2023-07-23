@@ -7,7 +7,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../../../../core/utils/assets_data.dart';
 import '../../../../../../../core/utils/constant.dart';
 import '../../../../../../../core/widgets/text_utils.dart';
-import '../../../../../../Community/presentation/view_model/community_cubit/community_cubit.dart';
 import '../../../../view_model/questions_cubit/questions_cubit.dart';
 import '../../../screens/questions_viewer.dart';
 

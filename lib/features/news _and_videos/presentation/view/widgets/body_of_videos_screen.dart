@@ -8,6 +8,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../../../../core/utils/assets_data.dart';
 import '../../../../../core/utils/constant.dart';
+import '../../../../../core/widgets/error_widget_for_screens.dart';
 import '../../../../../core/widgets/text_utils.dart';
 import '../screens/single_videos_screen.dart';
 
@@ -28,9 +29,9 @@ class _BodyOfVideosScreenState extends State<BodyOfVideosScreen> {
         if (state is AllVideosLoading) {
           return const AllNewsAndVideosLoadingWidget();
         } else if (state is AllVideosError) {
-          return SizedBox();
+          return const ErrorWidgetForScreens();
         } else {
-          return AllVideosLoadedWidget();
+          return const AllVideosLoadedWidget();
         }
       },
     );

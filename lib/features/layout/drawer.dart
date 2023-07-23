@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:legal_advice_app/features/authentication/presentation/view_model/auth_cubit/auth_cubit.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/utils/assets_data.dart';
@@ -81,16 +84,22 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                     onClicked: () => selectedItem(context, 4),
                   ),
                   SizedBox(height: 16.h),
-                  buildMenuItem(
+                  /*  buildMenuItem(
                     text: 'الاشعارات',
                     image: AssetsData.notificationPNG,
                     onClicked: () => selectedItem(context, 5),
-                  ),
+                  ),*/
                   buildMenuItem(
                     text: 'تسجيل الخروج',
                     image: AssetsData.notificationPNG,
                     onClicked: () => selectedItem(context, 5),
                   ),
+                  buildMenuItem(
+                    text: 'حذف الحساب',
+                    image: AssetsData.splashLogo,
+                    onClicked: () => selectedItem(context, 6),
+                  ),
+                  buildDrawerBloc()
                 ],
               ),
             ),
@@ -215,13 +224,104 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
         break;
       case 4:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => AppointmentBookingScreen(),
+          builder: (context) => AppointmentBookingScreen(showAppBar: true),
         ));
         break;
       case 5:
         _logOut();
         break;
+      case 6:
+        showCupertinoAlertDialogForDeletUser(context);
+        break;
     }
+  }
+
+  void showCupertinoAlertDialogForDeletUser(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          content: TextUtils(
+            fontSize: 12.sp,
+            fontWeight: FontWeight.w500,
+            text: 'هل أنت متأكد أنك تريد حذف حسابك؟',
+          ),
+          actions: <Widget>[
+            CupertinoDialogAction(
+              child: BlocBuilder<AuthCubit, AuthState>(
+                builder: (context, state) {
+                  if (state is DeletUsersLoading) {
+                    return SizedBox(
+                        height: 30.h,
+                        width: 30.w,
+                        child: CircularProgressIndicator());
+                  } else if (state is DeletUsersError) {
+                    return TextUtils(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w500,
+                      text: 'حاول مجددا',
+                      color: MyColors.pink,
+                    );
+                  } else {
+                    return TextUtils(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w500,
+                      text: 'نعم حذف',
+                      color: MyColors.pink,
+                    );
+                  }
+                },
+              ),
+              onPressed: () async {
+                BlocProvider.of<AuthCubit>(context).deletUser();
+              },
+            ),
+            CupertinoDialogAction(
+              child: TextUtils(
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w500,
+                text: 'لا',
+                color: MyColors.primary,
+              ),
+              onPressed: () {
+                // Perform the desired action here
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget buildDrawerBloc() {
+    return BlocListener<AuthCubit, AuthState>(
+      listenWhen: ((previous, current) => previous != current),
+      listener: ((context, state) {
+        if (state is DeletUsersSuccess) {
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => const OnboardingScreen()),
+            (Route<dynamic> route) => false,
+          );
+        }
+        if (state is DeletUsersError) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: TextUtils(
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w500,
+                text: 'حدث شئ ما خطا حاول مجددا',
+              ),
+              backgroundColor: MyColors.pink,
+              duration: const Duration(seconds: 3),
+            ),
+          );
+        }
+      }),
+      child: Container(),
+    );
   }
 
   Future<void> _logOut() async {

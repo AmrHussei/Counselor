@@ -59,7 +59,7 @@ class ManagerProfile extends StatelessWidget {
                     TextUtils(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w400,
-                      text: 'المستشار عمرو',
+                      text: 'احمد مالك',
                     ),
                   ],
                 ),
@@ -71,6 +71,7 @@ class ManagerProfile extends StatelessWidget {
                 child: Column(
                   children: [
                     MyContainerWithTitle(
+                      hight: 167,
                       title: 'نبذه عني',
                       child: ListView(
                         children: [
@@ -78,7 +79,7 @@ class ManagerProfile extends StatelessWidget {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 15.w, vertical: 15.h),
                             child: Text(
-                              'يعد المحامون في مصر مسؤولين عن تمثيل الموكلين في القضايا القانونية والدفاع عن حقوقهم في المحاكم. يجب على المحامين في مصر إتمام دراسة الحقوق وتلقي التدريب اللازم للحصول على شهادة المحاماة.',
+                              'اهلا ومرحبا يسعدني ان اقدم لكم نفسي المحامي عمرو خبره 5 سنوات في مجال المحاماه وقمت بمساعده اكثر من مئه شخص وانا جاهز لمساعدتكيشرفني العمل معك ومساعدتك علي حل مشكلتك في اسرع وقت لدي مكتب محاماه متكامل سوف تجدنادائما افضل اختيار لك',
                               style: GoogleFonts.almarai(
                                 fontSize: 14.sp,
                                 height: 2,
@@ -94,7 +95,7 @@ class ManagerProfile extends StatelessWidget {
                     SizedBox(
                       height: 20.h,
                     ),
-                    const MajorsWidgets(),
+                    MajorsWidgets(),
                     SizedBox(
                       height: 20.h,
                     ),
@@ -103,6 +104,9 @@ class ManagerProfile extends StatelessWidget {
                       height: 20.h,
                     ),
                     const QualificationsWidgets(),
+                    SizedBox(
+                      height: 20.h,
+                    ),
                   ],
                 ),
               ),

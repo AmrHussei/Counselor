@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:legal_advice_app/features/questions_and_dictionary/presentation/view/widgets/dictionary_widgets/dictionary_loaded_widget.dart';
 import 'package:legal_advice_app/features/questions_and_dictionary/presentation/view/widgets/dictionary_widgets/dictionary_loading_widget.dart';
 
+import '../../../../../../core/widgets/error_widget_for_screens.dart';
 import '../../../view_model/dictionary_cubit/dictionary_cubit.dart';
 
 class DictionaryViewerWidget extends StatelessWidget {
@@ -15,7 +16,7 @@ class DictionaryViewerWidget extends StatelessWidget {
     return BlocBuilder<DictionaryCubit, DictionaryState>(
       builder: (context, state) {
         if (state is DictionaryError) {
-          return const SizedBox();
+          return const ErrorWidgetForScreens();
         } else if (state is DictionaryLoading) {
           return const DictionaryLoadingWidget();
         } else {

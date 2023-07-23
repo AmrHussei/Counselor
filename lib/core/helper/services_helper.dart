@@ -25,9 +25,22 @@ class ServicesHelper {
     );
   }
 
+  static Future<Response> deletData({
+    required String url,
+  }) async {
+    return await dio.delete(
+      url,
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer ${UserDataConstant.token}'
+        }, //UserDataConstant.token
+      ),
+    );
+  }
+
   static Future<Response> postDataWithToken({
     required String url,
-    Map<String, dynamic>? data,
+    Object? data,
   }) async {
     return await dio.post(
       url,
@@ -67,7 +80,7 @@ class ServicesHelper {
     return await dio.get(
       url,
       options: Options(
-        headers: {'Authorization': 'Bearer ${ManagerrDataConstant.token}'},
+        headers: {'Authorization': 'Bearer ${UserDataConstant.token}'},
       ),
     );
   }

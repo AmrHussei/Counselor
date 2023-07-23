@@ -45,7 +45,8 @@ class ButtonsToNavToMyProfile extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => AppointmentBookingScreen(),
+                builder: (context) =>
+                    AppointmentBookingScreen(showAppBar: true),
               ),
             );
           },

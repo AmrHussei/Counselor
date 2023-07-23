@@ -117,6 +117,19 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  Future deletUser() async {
+    try {
+      emit(DeletUsersLoading());
+      Response response = await AuthRepo.deletUser();
+      if (response.statusCode == 204) {
+        emit(DeletUsersSuccess());
+      }
+    } catch (error) {
+      emit(DeletUsersError());
+      print(error.toString());
+    }
+  }
+
   ///***************************************************************** */
 
   Future<SharedPreferences> initShardPrefs() async {

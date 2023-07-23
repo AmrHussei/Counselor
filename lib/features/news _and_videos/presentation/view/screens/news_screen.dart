@@ -2,12 +2,14 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../core/utils/assets_data.dart';
 import '../../../../../core/utils/constant.dart';
 import '../../../../../core/widgets/text_utils.dart';
+import '../../view_model/news_cubit/news_cubit.dart';
 import '../widgets/body_of_news_screen.dart';
 
 class NewsScreen extends StatefulWidget {
@@ -28,8 +30,7 @@ class _NewsScreenState extends State<NewsScreen> {
       criticalAlert: false,
       provisional: false,
     );
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const NewsScreen()));
+
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       print('authorized');
     }
@@ -42,6 +43,7 @@ class _NewsScreenState extends State<NewsScreen> {
   @override
   void initState() {
     requestPermissionsForNotifications();
+    BlocProvider.of<NewsCubit>(context).getAllNews();
     super.initState();
   }
 

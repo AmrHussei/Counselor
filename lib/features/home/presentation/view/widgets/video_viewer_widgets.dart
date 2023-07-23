@@ -7,6 +7,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../../../core/utils/assets_data.dart';
 import '../../../../../core/utils/constant.dart';
+import '../../../../../core/widgets/error_widget_for_screens.dart';
 import '../../../../../core/widgets/text_utils.dart';
 import '../../../../news _and_videos/presentation/view/screens/single_videos_screen.dart';
 import '../../../../news _and_videos/presentation/view_model/videos_cubit/videos_cubit.dart';
@@ -23,7 +24,7 @@ class VideoViewerWidges extends StatelessWidget {
         if (state is AllVideosLoading) {
           return const LoadingNewsAndVideosWidgetForHome();
         } else if (state is AllVideosError) {
-          return SizedBox();
+          return const ErrorWidgetForListView();
         } else {
           return const LoadedVideosWidgetForHome();
         }

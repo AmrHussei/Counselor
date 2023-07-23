@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lazy_load_indexed_stack/lazy_load_indexed_stack.dart';
 import 'package:legal_advice_app/features/layout/drawer.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import '../../core/utils/assets_data.dart';
 import '../../core/utils/constant.dart';
+import '../appointment_booking/presentation/view/screens/appointment_booking_screen.dart';
 import '../questions_and_dictionary/presentation/view/screens/questions_screen.dart';
-import '../Community/presentation/view/screens/community_screen.dart';
 import '../home/presentation/view/screens/home_screen.dart';
 import '../manager_profile_and_chat/presentation/view/screens/chat_screen.dart';
 import '../user_settings/presentation/view/screens/user_profile.dart';
+
+int IndexOfPage = 3;
 
 class LayOut extends StatefulWidget {
   const LayOut({super.key});
@@ -21,20 +24,15 @@ class LayOut extends StatefulWidget {
 
 class _LayOutState extends State<LayOut> {
   // ignore: non_constant_identifier_names
-  int IndexOfPage = 3;
+
   bool amr = false;
   List<Widget> taps = [
-    CommunityMainScreen(),
+    AppointmentBookingScreen(showAppBar: false),
     ChatScreen(),
     QuestionsScreen(),
     HomeScreen(),
   ];
-  List<String> appBarText = [
-    'المجتمع',
-    'راسلني',
-    'اسئله شائعه',
-    'الرئيسيه',
-  ];
+
   @override
   void initState() {
     socket = IO.io('https://legal-advice-1812.onrender.com', {
@@ -76,24 +74,24 @@ class _LayOutState extends State<LayOut> {
           preferredSize: Size.fromHeight(56.h),
           child: AppBar(
             actions: [
-              SizedBox(
+              /*   SizedBox(
                 height: 24.h,
                 width: 24.w,
                 child: SvgPicture.asset(
                   AssetsData.notification,
                   fit: BoxFit.contain,
                 ),
-              ),
+              ),*/
               SizedBox(
                 width: 10.w,
               ),
               InkWell(
                 onTap: () {
-                  Navigator.of(context).push(
+                  /*    Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => const UserProfile(),
                     ),
-                  );
+                  );*/
                 },
                 child: CircleAvatar(
                   radius: 19.sp,
@@ -158,7 +156,7 @@ class _LayOutState extends State<LayOut> {
                     fit: BoxFit.fill,
                   ),
                 ),
-                label: 'المنتدي',
+                label: 'حجز المكتب',
               ),
               BottomNavigationBarItem(
                   icon: SizedBox(
@@ -197,7 +195,7 @@ class _LayOutState extends State<LayOut> {
                   ),
                   label: 'الرئيسيه'),
             ]),
-        body: IndexedStack(
+        body: LazyLoadIndexedStack(
           index: IndexOfPage,
           children: taps,
         ),

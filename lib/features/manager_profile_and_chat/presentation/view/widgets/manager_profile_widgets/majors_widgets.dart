@@ -5,13 +5,22 @@ import '../../../../../../core/utils/constant.dart';
 import '../../../../../../core/widgets/text_utils.dart';
 
 class MajorsWidgets extends StatelessWidget {
-  const MajorsWidgets({
+  MajorsWidgets({
     super.key,
   });
+  List<String> namesOfMajors = [
+    'قانون العقوبات',
+    'النظام الدستوري',
+    'القانون الدولي العام',
+    'المالية العامة والضرائب',
+    'الاوراق المالية',
+    'القانون الجنائي'
+  ];
 
   @override
   Widget build(BuildContext context) {
     return MyContainerWithTitle(
+      hight: 105.h,
       title: 'التخصصات',
       child: Padding(
         padding: EdgeInsets.all(6.w),
@@ -31,12 +40,12 @@ class MajorsWidgets extends StatelessWidget {
               child: TextUtils(
                 fontSize: 10.sp,
                 fontWeight: FontWeight.w400,
-                text: 'اسم التخصص',
+                text: namesOfMajors[index],
                 color: Colors.white,
               ),
             );
           },
-          itemCount: 15,
+          itemCount: 6,
         ),
       ),
     );

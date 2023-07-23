@@ -20,6 +20,12 @@ class VerifySignUpError extends AuthState {}
 
 class VerifySignUpSuccess extends AuthState {}
 
+class DeletUsersLoading extends AuthState {}
+
+class DeletUsersError extends AuthState {}
+
+class DeletUsersSuccess extends AuthState {}
+
 ///LogIn
 class LogInSuccess extends AuthState {}
 

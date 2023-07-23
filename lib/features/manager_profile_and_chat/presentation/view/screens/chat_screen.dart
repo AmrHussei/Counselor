@@ -7,6 +7,7 @@ import 'package:legal_advice_app/core/widgets/auth_text_form_filed.dart';
 import 'package:legal_advice_app/core/widgets/text_utils.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import '../../../../../core/utils/constant.dart';
+import '../../../../../core/widgets/text_form_for_chat_and_comment.dart';
 
 IO.Socket? socket;
 List<Message> messages = [];
@@ -53,106 +54,18 @@ class _ChatScreenState extends State<ChatScreen> {
       body: Column(
         children: <Widget>[
           chatMessages(),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 15.w,
-              ),
-              width: MediaQuery.of(context).size.width,
-              child: Row(children: [
-                Expanded(
-                  child: TextFormField(
-                    textAlign: TextAlign.right,
-                    controller: messageController,
-                    obscureText: false,
-                    cursorColor: Colors.black,
-                    keyboardType: TextInputType.text,
-                    validator: (value) {},
-                    style: GoogleFonts.tajawal(color: Colors.black),
-                    decoration: InputDecoration(
-                      fillColor: MyColors.authTextFormFiled,
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 4.h, vertical: 17.h),
-                      filled: true,
-                      prefixIcon: SizedBox(),
-                      suffixIconConstraints: BoxConstraints(
-                          maxWidth: 36.w,
-                          maxHeight: 36.w,
-                          minHeight: 24.w,
-                          minWidth: 24.w),
-                      suffixIcon: Padding(
-                        padding: EdgeInsets.fromLTRB(0.w, 0, 12.w, 0),
-                        child: SizedBox(
-                            height: 24.w, width: 24.w, child: SizedBox()),
-                      ),
-                      hintText: 'اكتب رسالتك',
-                      hintStyle: GoogleFonts.almarai(
-                        color: MyColors.descriptionText,
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.sp),
-                        borderSide: BorderSide.none,
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.sp),
-                        borderSide: BorderSide(color: MyColors.pink),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.sp),
-                        borderSide: BorderSide(color: MyColors.primary),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.sp),
-                        borderSide: BorderSide(color: MyColors.primary),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 10.w,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    socket!.emit('message', {
-                      "sender": UserDataConstant.id, //id of user
-                      "recipient": "643b4b51f270c6d03747aff0", // the manager
-                      "message": messageController.text
-                    });
-                    messageController.clear();
-                  },
-                  child: Container(
-                    height: 47.h,
-                    width: 60.w,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.circular(10.sp),
-                    ),
-                    child: Center(
-                        child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
-                      child: Column(
-                        children: [
-                          Image.asset(AssetsData.sendMsg),
-                          SizedBox(
-                            height: 4.h,
-                          ),
-                          TextUtils(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400,
-                            text: 'ارسال',
-                            color: Colors.white,
-                          )
-                        ],
-                      ),
-                    )),
-                  ),
-                )
-              ]),
-            ),
+          TextFormForChatAndComment(
+            messageController: messageController,
+            buttonText: 'ارسال',
+            hintText: 'اكتب رسالتك',
+            onTap: () {
+              socket!.emit('message', {
+                "sender": UserDataConstant.id, //id of user
+                "recipient": "643b4b51f270c6d03747aff0", // the manager
+                "message": messageController.text
+              });
+              messageController.clear();
+            },
           )
         ],
       ),

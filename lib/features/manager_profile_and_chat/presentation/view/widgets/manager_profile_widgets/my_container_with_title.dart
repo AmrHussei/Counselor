@@ -9,9 +9,11 @@ class MyContainerWithTitle extends StatelessWidget {
     super.key,
     required this.title,
     required this.child,
+    required this.hight,
   });
 
   final String title;
+  final double hight;
   final Widget child;
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class MyContainerWithTitle extends StatelessWidget {
           height: 10.h,
         ),
         Container(
-          height: 167.h,
+          height: hight.h,
           width: double.infinity,
           decoration: BoxDecoration(
             color: Colors.white,

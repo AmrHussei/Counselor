@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:legal_advice_app/features/home/presentation/view/widgets/video_viewer_widgets.dart';
-
-import '../../../../../core/utils/assets_data.dart';
-import '../../../../../core/utils/constant.dart';
 import '../../../../../core/widgets/text_utils.dart';
 import '../../../../news _and_videos/presentation/view/screens/videos_screen.dart';
 

@@ -26,5 +26,10 @@ ThemeData getApplicationTheme() {
         ),
       ),
     ),
+
+    scrollbarTheme: ScrollbarThemeData(
+      thumbColor: MaterialStateProperty.all<Color>(MyColors.primary),
+      trackColor: MaterialStateProperty.all<Color>(Colors.grey.shade200),
+    ),
   );
 }

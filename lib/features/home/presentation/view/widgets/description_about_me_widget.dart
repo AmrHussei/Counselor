@@ -51,13 +51,14 @@ class DescriptionAboutMeWidget extends StatelessWidget {
                       TextUtils(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w400,
-                        text: 'عمرو حسين',
+                        text: 'احمد مالك',
                       ),
                       SizedBox(
                         width: 14.w,
                       ),
                       CircleAvatar(
-                        backgroundImage: const AssetImage(AssetsData.amr),
+                        backgroundImage:
+                            const AssetImage(AssetsData.managerProfile),
                         radius: 19.h,
                       )
                     ],
@@ -65,7 +66,7 @@ class DescriptionAboutMeWidget extends StatelessWidget {
                   SizedBox(
                     height: 118.h,
                     child: Text(
-                      'يعد المحامون في مصر مسؤولين عن تمثيل الموكلين في القضايا القانونية والدفاع عن حقوقهم في المحاكم. يجب على المحامين في مصر إتمام دراسة الحقوق وتلقي التدريب اللازم للحصول على شهادة المحاماة.',
+                      'اهلا ومرحبا يسعدني ان اقدم لكم نفسي المحامي عمرو خبره 5 سنوات في مجال المحاماه وقمت بمساعده اكثر من مئه شخص وانا جاهز لمساعدتكيشرفني العمل معك ومساعدتك علي حل مشكلتك في اسرع وقت لدي مكتب محاماه متكامل سوف تجدنادائما افضل اختيار لك',
                       style: GoogleFonts.almarai(
                         color: MyColors.descriptionText,
                         fontSize: 14.sp,

@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,8 +8,10 @@ import 'package:shimmer/shimmer.dart';
 
 import '../../../../../core/utils/assets_data.dart';
 import '../../../../../core/utils/constant.dart';
+import '../../../../../core/widgets/error_widget_for_screens.dart';
 import '../../../../../core/widgets/text_utils.dart';
 import '../../view_model/news_cubit/news_cubit.dart';
+import '../screens/news_screen.dart';
 import '../screens/single_news_screen.dart';
 
 class BodyOfNewsScreen extends StatefulWidget {
@@ -23,7 +26,6 @@ class BodyOfNewsScreen extends StatefulWidget {
 class _BodyOfNewsScreenState extends State<BodyOfNewsScreen> {
   @override
   void initState() {
-    BlocProvider.of<NewsCubit>(context).getAllNews();
     super.initState();
   }
 
@@ -34,7 +36,7 @@ class _BodyOfNewsScreenState extends State<BodyOfNewsScreen> {
         if (state is AllNewsLoading) {
           return const AllNewsAndVideosLoadingWidget();
         } else if (state is AllNewsError) {
-          return SizedBox();
+          return const ErrorWidgetForScreens();
         } else {
           return const AllNewsLoadedWidget();
         }

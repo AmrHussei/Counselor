@@ -74,12 +74,7 @@ class UserProfile extends StatelessWidget {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        TextUtils(
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.w600,
-                            text: 'منشوراتي')
-                      ],
+                      children: [],
                     )
                   ],
                 ),

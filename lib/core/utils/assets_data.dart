@@ -46,4 +46,7 @@ class AssetsData {
   static const String consultionPng = 'assets/consultionPng.png';
   static const String gallery = 'assets/Gallery.png';
   static const String sendMsg = 'assets/sendMsg.png';
+  static const String person = 'assets/person.png';
+  static const String managerProfile = 'assets/manager_profile.jpg';
+  static const String errorImage = 'assets/errorImage.png';
 }

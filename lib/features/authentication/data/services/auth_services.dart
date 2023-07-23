@@ -96,4 +96,17 @@ class SignUpServices {
       return;
     }
   }
+
+  static Future<dynamic> deletUser() async {
+    try {
+      return await ServicesHelper.deletData(
+        url: ApiConstant.deleteMe,
+      );
+    } catch (error) {
+      print(
+          '---------------- error from services -----------------------------------');
+      print(error.toString());
+      return;
+    }
+  }
 }

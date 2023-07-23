@@ -2,7 +2,7 @@
     package="com.amr.legal">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="legal_advice_app"
+        android:label="المستشار"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

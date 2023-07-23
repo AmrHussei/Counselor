@@ -13,13 +13,14 @@ class QualificationsWidgets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyContainerWithTitle(
+      hight: 167,
       title: 'المؤهلات',
       child: ListView(
         children: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
             child: Text(
-              'يعد المحامون في مصر مسؤولين عن تمثيل الموكلين في القضايا القانونية والدفاع عن حقوقهم في المحاكم. يجب على المحامين في مصر إتمام دراسة الحقوق وتلقي التدريب اللازم للحصول على شهادة المحاماة.',
+              'حاصل على بكالوريوس الحقوق وحاصل على ماجستير في القانون الجنائي والاوراق الماليه وقمت بتحضير الدكتوراه في الماليه العامه والضرائب ولدي خبرات كثيره جدا في هذا المجال وايضا قمت بدراسه العديد من المجالات مثل القانون الدولي العام والنظام الدستور وغيرها ايضا من المجالات العديده التي يمكننا التخصص بها وموجوده ايضا في مكتبي',
               style: GoogleFonts.almarai(
                 fontSize: 14.sp,
                 height: 2,

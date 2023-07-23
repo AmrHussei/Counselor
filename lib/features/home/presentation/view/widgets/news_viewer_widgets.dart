@@ -3,9 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shimmer/shimmer.dart';
-
-import '../../../../../core/utils/assets_data.dart';
 import '../../../../../core/utils/constant.dart';
+import '../../../../../core/widgets/error_widget_for_screens.dart';
 import '../../../../../core/widgets/text_utils.dart';
 import '../../../../news _and_videos/presentation/view/screens/single_news_screen.dart';
 import '../../../../news _and_videos/presentation/view_model/news_cubit/news_cubit.dart';
@@ -22,7 +21,7 @@ class NewsViewerWidges extends StatelessWidget {
         if (state is AllNewsLoading) {
           return const LoadingNewsAndVideosWidgetForHome();
         } else if (state is AllNewsError) {
-          return SizedBox();
+          return const ErrorWidgetForListView();
         } else {
           return const LoadedNewsWidgetForHome();
         }

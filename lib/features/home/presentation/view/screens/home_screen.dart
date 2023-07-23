@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:legal_advice_app/features/layout/layout.dart';
 import 'package:legal_advice_app/features/news%20_and_videos/presentation/view_model/videos_cubit/videos_cubit.dart';
 
 import '../../../../../core/utils/assets_data.dart';
@@ -15,7 +16,9 @@ import '../widgets/description_about_me_widget.dart';
 import '../widgets/dictionary_widget.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({
+    super.key,
+  });
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -46,7 +49,8 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => AppointmentBookingScreen(),
+                    builder: (context) =>
+                        AppointmentBookingScreen(showAppBar: true),
                   ),
                 );
               },

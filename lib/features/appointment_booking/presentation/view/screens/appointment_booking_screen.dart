@@ -10,7 +10,9 @@ import '../../view_model/booking_cubit/booking_cubit.dart';
 import '../widgets/child_of_booking_submited_button.dart';
 
 class AppointmentBookingScreen extends StatelessWidget {
-  AppointmentBookingScreen({super.key});
+  AppointmentBookingScreen({super.key, required this.showAppBar});
+
+  final bool showAppBar;
 
   final TextEditingController reasonController = TextEditingController();
   final TextEditingController detailsController = TextEditingController();
@@ -22,22 +24,24 @@ class AppointmentBookingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('طلب موعد مع المكتب'),
-          leading: const SizedBox(),
-          actions: [
-            IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(
-                Icons.arrow_forward_ios,
-                size: 19.sp,
-                color: Colors.white,
-              ),
-            )
-          ],
-        ),
+        appBar: showAppBar
+            ? AppBar(
+                title: const Text('طلب موعد مع المكتب'),
+                leading: const SizedBox(),
+                actions: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(
+                      Icons.arrow_forward_ios,
+                      size: 19.sp,
+                      color: Colors.white,
+                    ),
+                  )
+                ],
+              )
+            : null,
         body: Form(
           key: formKey,
           child: Padding(

@@ -11,8 +11,6 @@ import 'package:legal_advice_app/features/news%20_and_videos/presentation/view_m
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'core/helper/services_helper.dart';
-import 'features/Community/presentation/view/screens/published_post_screen.dart';
-import 'features/Community/presentation/view_model/community_cubit/community_cubit.dart';
 import 'features/appointment_booking/presentation/view_model/booking_cubit/booking_cubit.dart';
 import 'features/authentication/presentation/view/screens/onboarding_and_splash/onboarding_screen.dart';
 import 'features/authentication/presentation/view/screens/onboarding_and_splash/splash_screen.dart';
@@ -57,7 +55,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => QuestionsCubit()),
         BlocProvider(create: (context) => BookingCubit()),
         BlocProvider(create: (context) => DictionaryCubit()),
-        BlocProvider(create: (context) => CommunityCubit()),
         BlocProvider(create: (context) => NewsCubit()),
         BlocProvider(create: (context) => VideosCubit()),
       ],

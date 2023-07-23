@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../../../core/utils/constant.dart';
 import '../../../../../core/widgets/text_utils.dart';
 import '../../../data/models/news_model.dart';
-import '../../view_model/news_cubit/news_cubit.dart';
 
 class SingleNewsScreen extends StatelessWidget {
   const SingleNewsScreen({super.key, required this.singlenews});

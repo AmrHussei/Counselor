@@ -22,10 +22,12 @@ class ContactDetailsAndProfileImage extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextUtils(
-                fontSize: 12.sp,
-                fontWeight: FontWeight.w400,
-                text: 'رقم الهاتف',
+              Flexible(
+                child: TextUtils(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w400,
+                  text: '+201033332',
+                ),
               ),
               SizedBox(
                 height: 18.h,
@@ -40,7 +42,7 @@ class ContactDetailsAndProfileImage extends StatelessWidget {
         ),
         CircleAvatar(
           backgroundImage: const AssetImage(
-            AssetsData.amr,
+            AssetsData.managerProfile,
           ),
           maxRadius: 60.w,
           minRadius: 57.w,
@@ -53,10 +55,12 @@ class ContactDetailsAndProfileImage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextUtils(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w400,
-                    text: 'رقم الهاتف',
+                  Flexible(
+                    child: TextUtils(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w400,
+                      text: 'ahmed@gmail.com',
+                    ),
                   ),
                   SizedBox(
                     height: 18.h,
