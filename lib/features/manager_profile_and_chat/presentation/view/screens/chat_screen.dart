@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:legal_advice_app/core/utils/assets_data.dart';
-import 'package:legal_advice_app/core/widgets/auth_text_form_filed.dart';
-import 'package:legal_advice_app/core/widgets/text_utils.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import '../../../../../core/utils/constant.dart';
 import '../../../../../core/widgets/text_form_for_chat_and_comment.dart';
+import '../widgets/chat_widgets/message.dart';
+import '../widgets/chat_widgets/message_tile.dart';
 
 IO.Socket? socket;
 List<Message> messages = [];
@@ -30,7 +27,6 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   initSocket() {
-    print('before connecrt ---------------------------');
     socket!.on('myMessage', (data) {
       setState(() {
         print('+++++++++++++++++++++++++++ data  ++++++++++++++++++++++++');
@@ -89,106 +85,4 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
     );
   }
-}
-
-class MessageTile extends StatefulWidget {
-  final String? message;
-  final String sender;
-  final bool sentByMe;
-
-  const MessageTile(
-      {Key? key,
-      required this.message,
-      required this.sender,
-      required this.sentByMe})
-      : super(key: key);
-
-  @override
-  State<MessageTile> createState() => _MessageTileState();
-}
-
-class _MessageTileState extends State<MessageTile> {
-  @override
-  Widget build(BuildContext context) {
-    if (widget.message == null) {
-      return SizedBox();
-    } else {
-      return Container(
-        padding: EdgeInsets.only(
-            top: 4.h,
-            bottom: 4.h,
-            left: widget.sentByMe ? 0 : 20.w,
-            right: widget.sentByMe ? 20.w : 0),
-        alignment:
-            widget.sentByMe ? Alignment.centerRight : Alignment.centerLeft,
-        child: Container(
-          margin: widget.sentByMe
-              ? EdgeInsets.only(left: 10.w)
-              : EdgeInsets.only(right: 10.w),
-          padding:
-              EdgeInsets.only(top: 10.h, bottom: 10, left: 15.w, right: 15.w),
-          decoration: BoxDecoration(
-              borderRadius: widget.sentByMe
-                  ? BorderRadius.only(
-                      topLeft: Radius.circular(15.sp),
-                      topRight: Radius.circular(15.sp),
-                      bottomLeft: Radius.circular(15.sp),
-                    )
-                  : BorderRadius.only(
-                      topLeft: Radius.circular(15.sp),
-                      topRight: Radius.circular(15.sp),
-                      bottomRight: Radius.circular(15.sp),
-                    ),
-              color: widget.sentByMe
-                  ? Theme.of(context).primaryColor
-                  : Colors.grey[700]),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                widget.sender.toUpperCase(),
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                    fontSize: 15.sp,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    letterSpacing: -0.5),
-              ),
-              SizedBox(
-                height: 1.h,
-              ),
-              Text(
-                widget.message!,
-                textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 16.sp, color: Colors.white),
-              )
-            ],
-          ),
-        ),
-      );
-    }
-  }
-}
-
-class Message {
-  String sender;
-  String recipient;
-  String message;
-
-  Message(
-      {required this.sender, required this.recipient, required this.message});
-
-  factory Message.fromJson(Map<String, dynamic> json) {
-    return Message(
-      sender: json['sender'],
-      recipient: json['recipient'],
-      message: json['message'],
-    );
-  }
-
-  Map<String, dynamic> toJson() => {
-        'sender': sender,
-        'recipient': recipient,
-        'message': message,
-      };
 }

@@ -192,4 +192,11 @@ class _ResetPasswordScreenThreeState extends State<ResetPasswordScreenThree> {
       ),
     ));
   }
+
+  @override
+  void dispose() {
+    repeatPasswordController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 }

@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../../../core/utils/constant.dart';
 import '../../view_model/dictionary_cubit/dictionary_cubit.dart';
-import '../../view_model/questions_cubit/questions_cubit.dart';
 import '../widgets/dictionary_widgets/dictionary_viewer_widget.dart';
-import '../widgets/questions_widgets/spacific_question/specific_questions_viewer_widget.dart';
 
 class DictionaryScreen extends StatefulWidget {
   const DictionaryScreen();

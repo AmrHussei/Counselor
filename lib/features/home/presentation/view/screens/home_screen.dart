@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:legal_advice_app/features/layout/layout.dart';
 import 'package:legal_advice_app/features/news%20_and_videos/presentation/view_model/videos_cubit/videos_cubit.dart';
-
 import '../../../../../core/utils/assets_data.dart';
 import '../../../../../core/widgets/text_utils.dart';
 import '../../../../appointment_booking/presentation/view/screens/appointment_booking_screen.dart';

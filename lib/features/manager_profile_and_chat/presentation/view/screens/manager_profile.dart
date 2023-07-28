@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../../../core/utils/assets_data.dart';
 import '../../../../../core/utils/constant.dart';
 import '../../../../../core/widgets/text_utils.dart';
@@ -73,13 +72,14 @@ class ManagerProfile extends StatelessWidget {
                     MyContainerWithTitle(
                       hight: 167,
                       title: 'نبذه عني',
-                      child: ListView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 15.w, vertical: 15.h),
                             child: Text(
-                              'اهلا ومرحبا يسعدني ان اقدم لكم نفسي المحامي عمرو خبره 5 سنوات في مجال المحاماه وقمت بمساعده اكثر من مئه شخص وانا جاهز لمساعدتكيشرفني العمل معك ومساعدتك علي حل مشكلتك في اسرع وقت لدي مكتب محاماه متكامل سوف تجدنادائما افضل اختيار لك',
+                              'اهلا ومرحبا يسعدني ان اقدم لكم نفسي المحامي عمرو خبره 5 سنوات في مجال المحاماه وقمت بمساعده اكثر من مئه شخص وانا جاهز لمساعدتكيشرفني العمل معك ومساعدتك علي حل مشكلتك في اسرع وقت ',
                               style: GoogleFonts.almarai(
                                 fontSize: 14.sp,
                                 height: 2,

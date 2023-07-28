@@ -3,18 +3,14 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:legal_advice_app/features/authentication/presentation/view/widgets/sign_up_widgets/build_sign_up_bloc.dart';
 import 'package:legal_advice_app/features/authentication/presentation/view/widgets/sign_up_widgets/child_of_submited_button_for_sign_up.dart';
 import 'package:legal_advice_app/features/authentication/presentation/view/widgets/sign_up_widgets/nav_to_log_in_screen.dart';
-
 import '../../../../../../core/utils/assets_data.dart';
 import '../../../../../../core/utils/constant.dart';
 import '../../../../../../core/widgets/auth_text_form_filed.dart';
 import '../../../../../../core/widgets/submited_button.dart';
-import '../../../../../../core/widgets/text_utils.dart';
-import '../../../../../layout/layout.dart';
 import '../../../view_model/auth_cubit/auth_cubit.dart';
-import '../../screens/OTP_sign_up_screen.dart';
-import '../../screens/log_in_screen.dart';
 
 class SignUpWidgetEmailAndPassword extends StatefulWidget {
   const SignUpWidgetEmailAndPassword({
@@ -137,58 +133,9 @@ class _SignUpWidgetEmailAndPasswordState
               .animate()
               .fade(duration: 500.milliseconds)
               .slideY(end: 0, begin: 1),
-          buildSignUpBloc(), //*** email*****/
+          buildSignUpBloc(),
         ],
       ),
-    );
-  }
-
-  Widget buildSignUpBloc() {
-    return BlocListener<AuthCubit, AuthState>(
-      listenWhen: ((previous, current) => previous != current),
-      listener: ((context, state) {
-        if (state is SignUpSuccess) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const LayOut(),
-            ),
-          );
-        }
-        if (state is SignUpError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: TextUtils(
-                fontSize: 13.sp,
-                fontWeight: FontWeight.w500,
-                text: 'حدث شئ ما خطأ حاول ببريد اخر او حاول مجددا',
-              ),
-              backgroundColor: MyColors.pink,
-              duration: const Duration(seconds: 3),
-            ),
-          );
-        }
-        if (state is ThisEmailIsLoged) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const LogInScreen(),
-            ),
-          );
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: TextUtils(
-                fontSize: 13.sp,
-                fontWeight: FontWeight.w500,
-                text: 'هذا البريد مسجل بالفعل',
-              ),
-              backgroundColor: MyColors.primary,
-              duration: const Duration(seconds: 3),
-            ),
-          );
-        }
-      }),
-      child: Container(),
     );
   }
 }

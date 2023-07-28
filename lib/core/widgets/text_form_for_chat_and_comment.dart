@@ -37,7 +37,11 @@ class TextFormForChatAndComment extends StatelessWidget {
               obscureText: false,
               cursorColor: Colors.black,
               keyboardType: TextInputType.text,
-              validator: (value) {},
+              validator: (value) {
+                if (value == null) {
+                  return 'اكتب شئ من فضلك';
+                }
+              },
               style: GoogleFonts.tajawal(color: Colors.black),
               decoration: InputDecoration(
                 fillColor: MyColors.authTextFormFiled,

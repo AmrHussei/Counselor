@@ -4,10 +4,16 @@ import 'package:legal_advice_app/features/manager_profile_and_chat/presentation/
 import '../../../../../../core/utils/constant.dart';
 import '../../../../../../core/widgets/text_utils.dart';
 
-class MajorsWidgets extends StatelessWidget {
+class MajorsWidgets extends StatefulWidget {
   MajorsWidgets({
     super.key,
   });
+
+  @override
+  State<MajorsWidgets> createState() => _MajorsWidgetsState();
+}
+
+class _MajorsWidgetsState extends State<MajorsWidgets> {
   List<String> namesOfMajors = [
     'قانون العقوبات',
     'النظام الدستوري',

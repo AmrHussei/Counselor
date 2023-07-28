@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../core/utils/assets_data.dart';
 import '../../../../../core/utils/constant.dart';
 import '../../../../../core/widgets/text_utils.dart';

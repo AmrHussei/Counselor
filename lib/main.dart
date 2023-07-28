@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:legal_advice_app/core/utils/constant.dart';
 import 'package:legal_advice_app/core/utils/theme_manager.dart';
-import 'package:legal_advice_app/features/layout/layout.dart';
 import 'package:legal_advice_app/features/news%20_and_videos/presentation/view_model/videos_cubit/videos_cubit.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,21 +13,10 @@ import 'core/helper/services_helper.dart';
 import 'features/appointment_booking/presentation/view_model/booking_cubit/booking_cubit.dart';
 import 'features/authentication/presentation/view/screens/onboarding_and_splash/onboarding_screen.dart';
 import 'features/authentication/presentation/view/screens/onboarding_and_splash/splash_screen.dart';
-import 'features/manager_profile_and_chat/presentation/view/screens/chat_screen.dart';
-import 'features/manager_profile_and_chat/presentation/view/screens/manager_profile.dart';
 import 'features/news _and_videos/presentation/view_model/news_cubit/news_cubit.dart';
-import 'features/questions_and_dictionary/presentation/view/screens/dictionary_screen.dart';
-import 'features/questions_and_dictionary/presentation/view/screens/questions_viewer.dart';
-import 'features/appointment_booking/presentation/view/screens/appointment_booking_screen.dart';
-import 'features/authentication/presentation/view/screens/reset_password_otp_screen.dart';
-import 'features/authentication/presentation/view/screens/reset_password_screen_one.dart';
-import 'features/authentication/presentation/view/screens/sign_up_screen.dart';
 import 'features/authentication/presentation/view_model/auth_cubit/auth_cubit.dart';
-import 'features/news _and_videos/presentation/view/screens/news_screen.dart';
-import 'features/news _and_videos/presentation/view/screens/videos_screen.dart';
 import 'features/questions_and_dictionary/presentation/view_model/dictionary_cubit/dictionary_cubit.dart';
 import 'features/questions_and_dictionary/presentation/view_model/questions_cubit/questions_cubit.dart';
-import 'features/user_settings/presentation/view/screens/user_profile.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

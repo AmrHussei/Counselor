@@ -2,46 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:legal_advice_app/features/news%20_and_videos/presentation/view/widgets/all_news_and_videos_loading_widget.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
 import '../../../../../core/utils/constant.dart';
-import '../../../../../core/widgets/error_widget_for_screens.dart';
 import '../../../../../core/widgets/text_utils.dart';
-import '../../view_model/news_cubit/news_cubit.dart';
-import '../screens/single_news_screen.dart';
+import '../../view_model/videos_cubit/videos_cubit.dart';
+import '../screens/single_videos_screen.dart';
 
-class BodyOfNewsScreen extends StatefulWidget {
-  const BodyOfNewsScreen({
-    super.key,
-  });
-
-  @override
-  State<BodyOfNewsScreen> createState() => _BodyOfNewsScreenState();
-}
-
-class _BodyOfNewsScreenState extends State<BodyOfNewsScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<NewsCubit, NewsState>(
-      builder: (context, state) {
-        if (state is AllNewsLoading) {
-          return const AllNewsAndVideosLoadingWidget();
-        } else if (state is AllNewsError) {
-          return const ErrorWidgetForScreens();
-        } else {
-          return const AllNewsLoadedWidget();
-        }
-      },
-    );
-  }
-}
-
-class AllNewsLoadedWidget extends StatelessWidget {
-  const AllNewsLoadedWidget({
+class AllVideosLoadedWidget extends StatelessWidget {
+  const AllVideosLoadedWidget({
     super.key,
   });
 
@@ -49,18 +18,25 @@ class AllNewsLoadedWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) {
+        String videoId = YoutubePlayer.convertUrlToId(
+                BlocProvider.of<VideosCubit>(context)
+                    .listOfAllVideos[index]
+                    .link) ??
+            '';
         return InkWell(
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => SingleNewsScreen(
-                    singlenews: BlocProvider.of<NewsCubit>(context)
-                        .listOfAllNews[index]),
+                builder: (context) => SingleVideosScreen(
+                  video: BlocProvider.of<VideosCubit>(context)
+                      .listOfAllVideos[index],
+                  videoId: videoId,
+                ),
               ),
             );
           },
           child: Padding(
-            padding: EdgeInsets.fromLTRB(20.w, 28.h, 20.w, 0),
+            padding: EdgeInsets.fromLTRB(20.w, 28.h, 20.w, 0.h),
             child: Container(
               width: 312.w,
               decoration: BoxDecoration(
@@ -76,20 +52,35 @@ class AllNewsLoadedWidget extends StatelessWidget {
                   SizedBox(
                     height: 209.h,
                     width: double.infinity,
-                    child: Image(
-                      image: NetworkImage(
-                        BlocProvider.of<NewsCubit>(context)
-                            .listOfAllNews[index]
-                            .image,
-                      ), //todo: add portrait image
-                      fit: BoxFit.fill,
-                      errorBuilder: (_, __, ___) {
-                        return Center(
-                          child: Icon(
-                            Icons.broken_image_sharp,
-                            color: Colors.blueGrey,
-                            size: 60.sp,
+                    child: YoutubePlayerBuilder(
+                      player: YoutubePlayer(
+                        controller: YoutubePlayerController(
+                          initialVideoId: videoId,
+                          flags: const YoutubePlayerFlags(
+                            autoPlay: false,
+                            mute: false,
+                            loop: false,
+                            showLiveFullscreenButton: false,
                           ),
+                        ),
+                        bottomActions: [
+                          CurrentPosition(),
+                          ProgressBar(
+                            isExpanded: true,
+                            colors: ProgressBarColors(
+                              playedColor: MyColors.primary,
+                              handleColor: MyColors.borders,
+                            ),
+                          ),
+                          const PlaybackSpeedButton(),
+                        ],
+                      ),
+                      builder: (context, player) {
+                        return Column(
+                          children: [
+                            player,
+                            const SizedBox(height: 16),
+                          ],
                         );
                       },
                     ),
@@ -105,16 +96,16 @@ class AllNewsLoadedWidget extends StatelessWidget {
                         TextUtils(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w700,
-                          text: BlocProvider.of<NewsCubit>(context)
-                              .listOfAllNews[index]
+                          text: BlocProvider.of<VideosCubit>(context)
+                              .listOfAllVideos[index]
                               .title,
                         ),
                         SizedBox(
                           height: 10.h,
                         ),
                         Text(
-                          BlocProvider.of<NewsCubit>(context)
-                              .listOfAllNews[index]
+                          BlocProvider.of<VideosCubit>(context)
+                              .listOfAllVideos[index]
                               .desc,
                           style: GoogleFonts.almarai(
                             color: MyColors.descriptionText,
@@ -135,7 +126,7 @@ class AllNewsLoadedWidget extends StatelessWidget {
           ),
         );
       },
-      itemCount: BlocProvider.of<NewsCubit>(context).listOfAllNews.length,
+      itemCount: BlocProvider.of<VideosCubit>(context).listOfAllVideos.length,
     );
   }
 }

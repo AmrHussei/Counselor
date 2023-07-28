@@ -8,10 +8,10 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 import '../../core/utils/assets_data.dart';
 import '../../core/utils/constant.dart';
 import '../appointment_booking/presentation/view/screens/appointment_booking_screen.dart';
+import '../manager_profile_and_chat/presentation/view/widgets/chat_widgets/message.dart';
 import '../questions_and_dictionary/presentation/view/screens/questions_screen.dart';
 import '../home/presentation/view/screens/home_screen.dart';
 import '../manager_profile_and_chat/presentation/view/screens/chat_screen.dart';
-import '../user_settings/presentation/view/screens/user_profile.dart';
 
 int IndexOfPage = 3;
 
@@ -35,10 +35,13 @@ class _LayOutState extends State<LayOut> {
 
   @override
   void initState() {
-    socket = IO.io('https://legal-advice-1812.onrender.com', {
+    socket = IO.io('https://legaladvice2.onrender.com', {
       'transports': ['websocket'],
       'autoConnect': false
     });
+
+    print(
+        '+++++++++++++++++++++++++++لbefore connect ++++++++++++++++++++++++');
     socket!.connect();
     socket!.emit('joinRoom', UserDataConstant.id);
     socket!.onConnect((_) {
@@ -195,7 +198,7 @@ class _LayOutState extends State<LayOut> {
                   ),
                   label: 'الرئيسيه'),
             ]),
-        body: LazyLoadIndexedStack(
+        body: IndexedStack(
           index: IndexOfPage,
           children: taps,
         ),

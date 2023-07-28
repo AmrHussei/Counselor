@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:legal_advice_app/features/news%20_and_videos/data/models/videos_model.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
 import '../../../../../core/utils/constant.dart';
 import '../../../../../core/widgets/text_utils.dart';
-import '../../view_model/videos_cubit/videos_cubit.dart';
 
 class SingleVideosScreen extends StatelessWidget {
   const SingleVideosScreen(

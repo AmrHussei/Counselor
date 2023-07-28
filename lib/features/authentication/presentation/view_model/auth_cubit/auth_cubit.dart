@@ -1,12 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
-
+import 'package:legal_advice_app/core/functions/delet_user_data.dart';
 import 'package:meta/meta.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
+import '../../../../../core/functions/set_user_data.dart';
 import '../../../data/models/auth_model.dart';
 import '../../../data/repository/auth_repo.dart';
-
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -24,15 +21,13 @@ class AuthCubit extends Cubit<AuthState> {
       userData =
           await AuthRepo.signUp(name: name, email: email, password: password);
       emit(SignUpSuccess());
-      await setUserData();
+      await setUserData(userData);
     } catch (error) {
       emit(SignUpError());
       print('SignUp SignUpError *****************************');
       print(error.toString());
     }
   }
-
-  ///*****************************************************************
 
   Future<void> logIn({
     required String password,
@@ -42,7 +37,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(LogInLoading());
       userData = await AuthRepo.logIn(email: email, password: password);
       emit(LogInSuccess());
-      await setUserData();
+      await setUserData(userData);
     } catch (error) {
       emit(LogInError());
       print(' Log in Error *****************************');
@@ -50,8 +45,6 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  ///***************************************************************** */
-  //forgetPasswordFirstRequest
   Future<void> forgetPasswordFirstRequest({
     required String email,
   }) async {
@@ -109,7 +102,7 @@ class AuthCubit extends Cubit<AuthState> {
         newPassword: newPassword,
       );
       emit(ResetPasswordThreeSuccess());
-      await setUserData();
+      await setUserData(userData);
     } catch (error) {
       emit(ResetPasswordThreeError());
       print(' Log in Error *****************************');
@@ -120,35 +113,12 @@ class AuthCubit extends Cubit<AuthState> {
   Future deletUser() async {
     try {
       emit(DeletUsersLoading());
-      Response response = await AuthRepo.deletUser();
-      if (response.statusCode == 204) {
-        emit(DeletUsersSuccess());
-      }
+      await AuthRepo.deletUser();
+      await deletUserData();
+      emit(DeletUsersSuccess());
     } catch (error) {
       emit(DeletUsersError());
       print(error.toString());
     }
-  }
-
-  ///***************************************************************** */
-
-  Future<SharedPreferences> initShardPrefs() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs;
-  }
-
-  setUserData() async {
-    final prefs = await initShardPrefs();
-    String token = userData.token;
-    await prefs.setString('token', token);
-
-    String email = userData.email;
-    await prefs.setString('email', email);
-
-    String id = userData.id;
-    await prefs.setString('id', id);
-
-    String name = userData.name;
-    await prefs.setString('name', name);
   }
 }

@@ -15,12 +15,13 @@ class QualificationsWidgets extends StatelessWidget {
     return MyContainerWithTitle(
       hight: 167,
       title: 'المؤهلات',
-      child: ListView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
             child: Text(
-              'حاصل على بكالوريوس الحقوق وحاصل على ماجستير في القانون الجنائي والاوراق الماليه وقمت بتحضير الدكتوراه في الماليه العامه والضرائب ولدي خبرات كثيره جدا في هذا المجال وايضا قمت بدراسه العديد من المجالات مثل القانون الدولي العام والنظام الدستور وغيرها ايضا من المجالات العديده التي يمكننا التخصص بها وموجوده ايضا في مكتبي',
+              ' على بكالوريوس الحقوق وحاصل على ماجستير في القانون الجنائي والاوراق الماليه وقمت بتحضير الدكتوراه في الماليه العامه والضرائب ولدي خبرات كثيره جدا في هذا المجال وايضا قمت بدراسه العديد من المجالات ي',
               style: GoogleFonts.almarai(
                 fontSize: 14.sp,
                 height: 2,

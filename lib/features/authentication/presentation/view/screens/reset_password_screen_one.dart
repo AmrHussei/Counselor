@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:legal_advice_app/features/authentication/presentation/view/screens/reset_password_otp_screen.dart';
 import '../../../../../core/utils/assets_data.dart';
 import '../../../../../core/utils/constant.dart';
 import '../../../../../core/widgets/auth_text_form_filed.dart';
@@ -10,11 +9,19 @@ import '../../../../../core/widgets/my_app_bar.dart';
 import '../../../../../core/widgets/submited_button.dart';
 import '../../../../../core/widgets/text_utils.dart';
 import '../../view_model/auth_cubit/auth_cubit.dart';
+import '../widgets/reset_password_widgets/build_reset_password_screen_one.dart';
 import '../widgets/reset_password_widgets/child_of_logIn_submited_button._for_forgetpassword_screen_one.dart';
 
-class ResetPasswordScreenOne extends StatelessWidget {
+class ResetPasswordScreenOne extends StatefulWidget {
   ResetPasswordScreenOne({super.key});
+
+  @override
+  State<ResetPasswordScreenOne> createState() => _ResetPasswordScreenOneState();
+}
+
+class _ResetPasswordScreenOneState extends State<ResetPasswordScreenOne> {
   final TextEditingController emailController = TextEditingController();
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
@@ -91,7 +98,9 @@ class ResetPasswordScreenOne extends StatelessWidget {
                     }
                   },
                 ).animate().fade(duration: 600.milliseconds).slideX(),
-                _buildForgetPasswordScreenOneBloc(),
+                buildForgetPasswordScreenOneBloc(
+                  email: emailController.text,
+                ),
               ],
             ),
           ),
@@ -100,34 +109,9 @@ class ResetPasswordScreenOne extends StatelessWidget {
     ));
   }
 
-  Widget _buildForgetPasswordScreenOneBloc() {
-    return BlocListener<AuthCubit, AuthState>(
-      listenWhen: ((previous, current) => previous != current),
-      listener: ((context, state) {
-        if (state is ForgetPasswordSuccess) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) =>
-                  ResetPasswordOTPScreen(email: emailController.text),
-            ),
-          );
-        }
-        if (state is ForgetPasswordError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: TextUtils(
-                fontSize: 13.sp,
-                fontWeight: FontWeight.w500,
-                text: 'حدث شئ ما خطأ حاول ببريد اخر او حاول مجددا',
-              ),
-              backgroundColor: MyColors.pink,
-              duration: const Duration(seconds: 3),
-            ),
-          );
-        }
-      }),
-      child: Container(),
-    );
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
   }
 }

@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:legal_advice_app/features/home/presentation/view/widgets/news_viewer_widgets.dart';
+import 'package:legal_advice_app/features/home/presentation/view/widgets/loading_news_and_videos_widget_for_home.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
-import '../../../../../core/utils/assets_data.dart';
 import '../../../../../core/utils/constant.dart';
 import '../../../../../core/widgets/error_widget_for_screens.dart';
 import '../../../../../core/widgets/text_utils.dart';

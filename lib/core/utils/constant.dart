@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ApiConstant {
-  static const String baseURL =
-      'https://legal-advice-1812.onrender.com/api/v1/';
+  static const String baseURL = 'https://legaladvice2.onrender.com/api/v1/';
   static const String logInEndPoint = 'user/login';
   static String signUpEndpointOne = 'user/signup';
   static String forgetPasswordOne = 'user/forgetPassword';

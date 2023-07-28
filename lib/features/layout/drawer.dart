@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:legal_advice_app/features/authentication/presentation/view_model/auth_cubit/auth_cubit.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../core/functions/log_out.dart';
 import '../../core/utils/assets_data.dart';
 import '../../core/utils/constant.dart';
 import '../../core/widgets/text_utils.dart';
@@ -228,7 +228,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
         ));
         break;
       case 5:
-        _logOut();
+        logOut(context);
         break;
       case 6:
         showCupertinoAlertDialogForDeletUser(context);
@@ -240,53 +240,59 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return CupertinoAlertDialog(
-          content: TextUtils(
-            fontSize: 12.sp,
-            fontWeight: FontWeight.w500,
-            text: 'هل أنت متأكد أنك تريد حذف حسابك؟',
-          ),
-          actions: <Widget>[
-            CupertinoDialogAction(
-              child: BlocBuilder<AuthCubit, AuthState>(
-                builder: (context, state) {
-                  if (state is DeletUsersLoading) {
-                    return SizedBox(
-                        height: 30.h,
-                        width: 30.w,
-                        child: CircularProgressIndicator());
-                  } else if (state is DeletUsersError) {
-                    return TextUtils(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w500,
-                      text: 'حاول مجددا',
-                      color: MyColors.pink,
-                    );
-                  } else {
-                    return TextUtils(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w500,
-                      text: 'نعم حذف',
-                      color: MyColors.pink,
-                    );
-                  }
-                },
-              ),
-              onPressed: () async {
-                BlocProvider.of<AuthCubit>(context).deletUser();
-              },
-            ),
-            CupertinoDialogAction(
-              child: TextUtils(
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            buildDrawerBloc(),
+            CupertinoAlertDialog(
+              content: TextUtils(
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w500,
-                text: 'لا',
-                color: MyColors.primary,
+                text: 'هل أنت متأكد أنك تريد حذف حسابك؟',
               ),
-              onPressed: () {
-                // Perform the desired action here
-                Navigator.of(context).pop();
-              },
+              actions: <Widget>[
+                CupertinoDialogAction(
+                  child: BlocBuilder<AuthCubit, AuthState>(
+                    builder: (context, state) {
+                      if (state is DeletUsersLoading) {
+                        return SizedBox(
+                            height: 30.h,
+                            width: 30.w,
+                            child: CircularProgressIndicator());
+                      } else if (state is DeletUsersError) {
+                        return TextUtils(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w500,
+                          text: 'حاول مجددا',
+                          color: MyColors.pink,
+                        );
+                      } else {
+                        return TextUtils(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w500,
+                          text: 'نعم حذف',
+                          color: MyColors.pink,
+                        );
+                      }
+                    },
+                  ),
+                  onPressed: () async {
+                    BlocProvider.of<AuthCubit>(context).deletUser();
+                  },
+                ),
+                CupertinoDialogAction(
+                  child: TextUtils(
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w500,
+                    text: 'لا',
+                    color: MyColors.primary,
+                  ),
+                  onPressed: () {
+                    // Perform the desired action here
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
             ),
           ],
         );
@@ -321,31 +327,6 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
         }
       }),
       child: Container(),
-    );
-  }
-
-  Future<void> _logOut() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('token', '');
-    await prefs.setString('name', '');
-    await prefs.setString('email', '');
-    await prefs.setString('id', '');
-    setState(() {
-      UserDataConstant.token = '';
-      UserDataConstant.name = '';
-      UserDataConstant.email = '';
-      UserDataConstant.id = '';
-      print(' This is user data =============================================');
-      print(
-        '${UserDataConstant.token},,,${UserDataConstant.email},,,${UserDataConstant.id},,,${UserDataConstant.name}',
-      );
-    });
-    print('log out ----------------------------------------');
-    // ignore: use_build_context_synchronously
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => const OnboardingScreen(),
-      ),
     );
   }
 }

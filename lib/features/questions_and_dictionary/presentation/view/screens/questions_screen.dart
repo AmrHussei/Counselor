@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import '../../../../../core/utils/constant.dart';
 import '../../../../../core/widgets/text_utils.dart';
 import '../../view_model/questions_cubit/questions_cubit.dart';
 import '../widgets/questions_widgets/all_question/type_of_questions_viewer_widget.dart';

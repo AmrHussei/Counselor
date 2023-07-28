@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import '../models/dictionary_model.dart';
 import '../services/dictionary_services.dart';
-import '../services/questions_services.dart';
 
 class DictionaryRepo {
   static Future<List<DictionaryModel>> getDictionaryData() async {

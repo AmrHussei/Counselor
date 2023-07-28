@@ -128,4 +128,11 @@ class _LogInWidgetEmailAndPasswordState
       ),
     );
   }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 }

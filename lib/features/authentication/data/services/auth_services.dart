@@ -11,8 +11,8 @@ class SignUpServices {
       return await ServicesHelper.postData(
         url: ApiConstant.signUpEndpointOne,
         data: {
-          "email": email,
           "name": name,
+          "email": email,
           "password": password,
         },
       );
