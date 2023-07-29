@@ -32,21 +32,8 @@ It contains more than 25 screens
 - Instant socket io conversations between the user and the lawyer to request legal advice before booking an appointment in the office
 
 ## Screenshots
-![Screenshot 2023-06-30 205558](https://github.com/AmrHussei/Counselor_at_law_README_file/assets/94804979/807172b6-492d-4781-bd51-472bd9f02909)
-![Screenshot 2023-06-30 205617](https://github.com/AmrHussei/Counselor_at_law_README_file/assets/94804979/0ad1d6b5-4a71-4cd8-a0ef-6c87569c1561)
-![Screenshot 2023-06-30 205638](https://github.com/AmrHussei/Counselor_at_law_README_file/assets/94804979/157ec0fb-b7ab-4504-8525-8c9aa012a904)
-![Screenshot 2023-06-29 183943](https://github.com/AmrHussei/Counselor_at_law_README_file/assets/94804979/c89d63a7-0e85-4522-bfa9-5773a61bed39)
-![Uploadin![Screenshot 2023-06-29 184014](https://github.com/AmrHussei/Counselor_at_law_README_file/assets/94804979/7845d2a8-858a-4254-984a-fa437951a922)
-![Screenshot 2023-06-29 184356](https://github.com/AmrHussei/Counselor_at_law_README_file/assets/94804979/00d073bb-237e-47d6-8c67-1beb11c762d4)
-![Screenshot 2023-06-29 184053](https://github.com/AmrHussei/Counselor_at_law_README_file/assets/94804979/25eb75b5-22bc-414b-8e62-360930d1ed06)
-![Screenshot 2023-06-29 184034](https://github.com/AmrHussei/Counselor_at_law_README_file/assets/94804979/d727f92b-14c6-4eea-aa0c-82185c44f4c9)
-![Screenshot 2023-06-29 184111](https://github.com/AmrHussei/Counselor_at_law_README_file/assets/94804979/b01e1909-a940-4a7d-a017-d0e44d09b7f4)
-![Screenshot 2023-06-29 184153](https://github.com/AmrHussei/Counselor_at_law_README_file/assets/94804979/b32637db-0d2e-478d-943e-43f26296f393)
-![Screenshot 2023-06-29 184208](https://github.com/AmrHussei/Counselor_at_law_README_file/assets/94804979/403ce85f-a55f-4ee7-8a88-ccb08bfb6341)
-![Screenshot 2023-06-29 184231](https://github.com/AmrHussei/Counselor_at_law_README_file/assets/94804979/a5d9d30e-ca01-49ee-904a-d68a7e43465f)
-![Screenshot 2023-06-29 184252](https://github.com/AmrHussei/Counselor_at_law_README_file/assets/94804979/6b6202fc-7dba-4a5c-83bc-efb020e462d2)
-![Screenshot 2023-06-29 184330](https://github.com/AmrHussei/Counselor_at_law_README_file/assets/94804979/efc19134-c8bd-4bfe-8ea5-ad0d5ed34227)
-![Screenshot 2023-06-29 184315](https://github.com/AmrHussei/Counselor_at_law_README_file/assets/94804979/c4d4c7e0-56ec-4c4b-a464-43a981b3301c)
+![Screenshot 2023-06-30 205558](https://github.com/AmrHussei/Counselor/assets/94804979/0c202fc7-990f-4159-87cf-814a649e746e)
+
 
 
 
@@ -63,6 +50,20 @@ It contains more than 25 screens
 
 ## Packages
 ![Screenshot 2023-07-25 193742](https://github.com/AmrHussei/Counselor_at_law_README_file/assets/94804979/433aba0e-25bb-488d-9e58-3d77ccd3c706)
+![Screenshot 2023-06-30 205617](https://github.com/AmrHussei/Counselor/assets/94804979/1a4a9ba5-7176-4994-9b32-32c0e8e47cfc)
+![Screenshot 2023-06-30 205638](https://github.com/AmrHussei/Counselor/assets/94804979/754467e7-ff24-457c-8daa-64f7d4dc9bfc)
+![Screenshot 2023-06-29 183943](https://github.com/AmrHussei/Counselor/assets/94804979/51f124d5-439e-4d51-a0fa-96f94881bbc0)
+![Screenshot 2023-06-29 184014](https://github.com/AmrHussei/Counselor/assets/94804979/e73e83b3-0283-4ab1-8848-dec2bcc8abd7)
+![Screenshot 2023-06-29 184053](https://github.com/AmrHussei/Counselor/assets/94804979/977c6476-d2c8-4ebf-8535-1abcf91a3b2d)
+![Screenshot 2023-06-29 184034](https://github.com/AmrHussei/Counselor/assets/94804979/d60e8e4c-fcc6-4c99-80b8-08cf920dce85)
+![Screenshot 2023-06-29 184111](https://github.com/AmrHussei/Counselor/assets/94804979/1aaabb80-7c4b-4650-b23d-e71bfbdacf6e)
+![Screenshot 2023-06-29 184153](https://github.com/AmrHussei/Counselor/assets/94804979/7ccfab9d-d640-4ba8-be3e-c69bf072bbc3)
+![Screenshot 2023-06-29 184208](https://github.com/AmrHussei/Counselor/assets/94804979/451dabaa-cffa-4332-be88-5588e7556eaa)
+![Screenshot 2023-06-29 184231](https://github.com/AmrHussei/Counselor/assets/94804979/d56592f8-b037-4b64-ad89-1070b82bda0f)
+![Screenshot 2023-06-29 184315](https://github.com/AmrHussei/Counselor/assets/94804979/fa83d460-0ea2-4707-9f95-22b509a9efe8)
+![Screenshot 2023-06-29 184252](https://github.com/AmrHussei/Counselor/assets/94804979/2bf47670-4835-4b2b-a5ce-3d465488b9f8)
+![Screenshot 2023-06-29 184356](https://github.com/AmrHussei/Counselor/assets/94804979/b39c0139-5784-4353-b7d0-6c1bfdc5d21b)
+![Screenshot 2023-06-29 184330](https://github.com/AmrHussei/Counselor/assets/94804979/dcddc704-4374-4e61-998f-8422d03ea09c)
 
 
 
